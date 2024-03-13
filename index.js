@@ -6,6 +6,8 @@ for (var index = 0; index < document.querySelectorAll(".drum").length; index++) 
         var ButtonContent = this.innerHTML;
         // Call the makeSound function with the inner HTML content as argument
         makeSound(ButtonContent);
+        // Call the buttonAnimation function with the inner HTML content as argument
+        buttonAnimation(ButtonContent);
     });
 
     // Add keydown event listener to the entire document
@@ -14,6 +16,8 @@ for (var index = 0; index < document.querySelectorAll(".drum").length; index++) 
         var pressedKey = event.key;
         // Call the makeSound function with the pressed key as argument
         makeSound(pressedKey);
+        // Call the buttonAnimation function with the pressed key as argument
+        buttonAnimation(pressedKey);
     });
 }
 
@@ -53,3 +57,15 @@ function makeSound(key){
             console.log(key);
     }
 }
+// Function to add animation to button when clicked
+function buttonAnimation(currentKey){
+    // Select the button with the class of the current key
+    var activeButton = document.querySelector("." + currentKey);
+    // Add the class "pressed" to the button
+    activeButton.classList.add("pressed");
+    // Remove the class "pressed" from the button after 100ms
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
+
